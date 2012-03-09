@@ -1,0 +1,341 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE68016E14F64BA5003511E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE68016D14F64BA5003511E1 /* UIKit.framework */; };
+		BE68017014F64BA5003511E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE68016F14F64BA5003511E1 /* Foundation.framework */; };
+		BE68017214F64BA5003511E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE68017114F64BA5003511E1 /* CoreGraphics.framework */; };
+		BE68017814F64BA5003511E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE68017614F64BA5003511E1 /* InfoPlist.strings */; };
+		BE68017A14F64BA5003511E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68017914F64BA5003511E1 /* main.m */; };
+		BE68017E14F64BA5003511E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68017D14F64BA5003511E1 /* AppDelegate.m */; };
+		BE68018114F64BA5003511E1 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68018014F64BA5003511E1 /* ExampleViewController.m */; };
+		BE68018414F64BA5003511E1 /* ExampleViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE68018214F64BA5003511E1 /* ExampleViewController_iPhone.xib */; };
+		BE68018714F64BA5003511E1 /* ExampleViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE68018514F64BA5003511E1 /* ExampleViewController_iPad.xib */; };
+		BE68019714F64BE8003511E1 /* BITTwitterConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68019014F64BE8003511E1 /* BITTwitterConnect.m */; };
+		BE68019814F64BE8003511E1 /* BITTwitterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68019214F64BE8003511E1 /* BITTwitterRequest.m */; };
+		BE68019914F64BE8003511E1 /* BITTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68019414F64BE8003511E1 /* BITTwitterViewController.m */; };
+		BE68019A14F64BE8003511E1 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68019614F64BE8003511E1 /* NSData+Base64.m */; };
+		BE75358A14F65733005441EC /* kong.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE75358914F65733005441EC /* kong.jpeg */; };
+		BE75359014F659F8005441EC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75358F14F659F8005441EC /* Icon.png */; };
+		BE75359214F65A03005441EC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE75359114F65A03005441EC /* Icon@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BE68016914F64BA5003511E1 /* BITTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BITTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE68016D14F64BA5003511E1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BE68016F14F64BA5003511E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BE68017114F64BA5003511E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE68017514F64BA5003511E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE68017714F64BA5003511E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BE68017914F64BA5003511E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BE68017B14F64BA5003511E1 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		BE68017C14F64BA5003511E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BE68017D14F64BA5003511E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BE68017F14F64BA5003511E1 /* ExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		BE68018014F64BA5003511E1 /* ExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		BE68018314F64BA5003511E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ExampleViewController_iPhone.xib; sourceTree = "<group>"; };
+		BE68018614F64BA5003511E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ExampleViewController_iPad.xib; sourceTree = "<group>"; };
+		BE68018E14F64BE8003511E1 /* BITTwitterConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITTwitterConfig.h; sourceTree = "<group>"; };
+		BE68018F14F64BE8003511E1 /* BITTwitterConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITTwitterConnect.h; sourceTree = "<group>"; };
+		BE68019014F64BE8003511E1 /* BITTwitterConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITTwitterConnect.m; sourceTree = "<group>"; };
+		BE68019114F64BE8003511E1 /* BITTwitterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITTwitterRequest.h; sourceTree = "<group>"; };
+		BE68019214F64BE8003511E1 /* BITTwitterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITTwitterRequest.m; sourceTree = "<group>"; };
+		BE68019314F64BE8003511E1 /* BITTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITTwitterViewController.h; sourceTree = "<group>"; };
+		BE68019414F64BE8003511E1 /* BITTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITTwitterViewController.m; sourceTree = "<group>"; };
+		BE68019514F64BE8003511E1 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		BE68019614F64BE8003511E1 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		BE75358914F65733005441EC /* kong.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kong.jpeg; sourceTree = "<group>"; };
+		BE75358F14F659F8005441EC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		BE75359114F65A03005441EC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE68016614F64BA5003511E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE68016E14F64BA5003511E1 /* UIKit.framework in Frameworks */,
+				BE68017014F64BA5003511E1 /* Foundation.framework in Frameworks */,
+				BE68017214F64BA5003511E1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE68015E14F64BA5003511E1 = {
+			isa = PBXGroup;
+			children = (
+				BE68017314F64BA5003511E1 /* BITTwitter */,
+				BE68016C14F64BA5003511E1 /* Frameworks */,
+				BE68016A14F64BA5003511E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE68016A14F64BA5003511E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE68016914F64BA5003511E1 /* BITTwitter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE68016C14F64BA5003511E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE68016D14F64BA5003511E1 /* UIKit.framework */,
+				BE68016F14F64BA5003511E1 /* Foundation.framework */,
+				BE68017114F64BA5003511E1 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE68017314F64BA5003511E1 /* BITTwitter */ = {
+			isa = PBXGroup;
+			children = (
+				BE68018D14F64BE8003511E1 /* BITTwitter */,
+				BE68017C14F64BA5003511E1 /* AppDelegate.h */,
+				BE68017D14F64BA5003511E1 /* AppDelegate.m */,
+				BE68017F14F64BA5003511E1 /* ExampleViewController.h */,
+				BE68018014F64BA5003511E1 /* ExampleViewController.m */,
+				BE68018214F64BA5003511E1 /* ExampleViewController_iPhone.xib */,
+				BE68018514F64BA5003511E1 /* ExampleViewController_iPad.xib */,
+				BE75358914F65733005441EC /* kong.jpeg */,
+				BE68017414F64BA5003511E1 /* Supporting Files */,
+			);
+			path = BITTwitter;
+			sourceTree = "<group>";
+		};
+		BE68017414F64BA5003511E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE75359114F65A03005441EC /* Icon@2x.png */,
+				BE75358F14F659F8005441EC /* Icon.png */,
+				BE68017514F64BA5003511E1 /* Info.plist */,
+				BE68017614F64BA5003511E1 /* InfoPlist.strings */,
+				BE68017914F64BA5003511E1 /* main.m */,
+				BE68017B14F64BA5003511E1 /* Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE68018D14F64BE8003511E1 /* BITTwitter */ = {
+			isa = PBXGroup;
+			children = (
+				BE68018E14F64BE8003511E1 /* BITTwitterConfig.h */,
+				BE68018F14F64BE8003511E1 /* BITTwitterConnect.h */,
+				BE68019014F64BE8003511E1 /* BITTwitterConnect.m */,
+				BE68019114F64BE8003511E1 /* BITTwitterRequest.h */,
+				BE68019214F64BE8003511E1 /* BITTwitterRequest.m */,
+				BE68019314F64BE8003511E1 /* BITTwitterViewController.h */,
+				BE68019414F64BE8003511E1 /* BITTwitterViewController.m */,
+				BE68019514F64BE8003511E1 /* NSData+Base64.h */,
+				BE68019614F64BE8003511E1 /* NSData+Base64.m */,
+			);
+			path = BITTwitter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE68016814F64BA5003511E1 /* BITTwitter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE68018A14F64BA5003511E1 /* Build configuration list for PBXNativeTarget "BITTwitter" */;
+			buildPhases = (
+				BE68016514F64BA5003511E1 /* Sources */,
+				BE68016614F64BA5003511E1 /* Frameworks */,
+				BE68016714F64BA5003511E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BITTwitter;
+			productName = BITTwitter;
+			productReference = BE68016914F64BA5003511E1 /* BITTwitter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE68016014F64BA5003511E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Andi Putra";
+			};
+			buildConfigurationList = BE68016314F64BA5003511E1 /* Build configuration list for PBXProject "BITTwitter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BE68015E14F64BA5003511E1;
+			productRefGroup = BE68016A14F64BA5003511E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE68016814F64BA5003511E1 /* BITTwitter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE68016714F64BA5003511E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE68017814F64BA5003511E1 /* InfoPlist.strings in Resources */,
+				BE68018414F64BA5003511E1 /* ExampleViewController_iPhone.xib in Resources */,
+				BE68018714F64BA5003511E1 /* ExampleViewController_iPad.xib in Resources */,
+				BE75358A14F65733005441EC /* kong.jpeg in Resources */,
+				BE75359014F659F8005441EC /* Icon.png in Resources */,
+				BE75359214F65A03005441EC /* Icon@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE68016514F64BA5003511E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE68017A14F64BA5003511E1 /* main.m in Sources */,
+				BE68017E14F64BA5003511E1 /* AppDelegate.m in Sources */,
+				BE68018114F64BA5003511E1 /* ExampleViewController.m in Sources */,
+				BE68019714F64BE8003511E1 /* BITTwitterConnect.m in Sources */,
+				BE68019814F64BE8003511E1 /* BITTwitterRequest.m in Sources */,
+				BE68019914F64BE8003511E1 /* BITTwitterViewController.m in Sources */,
+				BE68019A14F64BE8003511E1 /* NSData+Base64.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BE68017614F64BA5003511E1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE68017714F64BA5003511E1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BE68018214F64BA5003511E1 /* ExampleViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE68018314F64BA5003511E1 /* en */,
+			);
+			name = ExampleViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		BE68018514F64BA5003511E1 /* ExampleViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE68018614F64BA5003511E1 /* en */,
+			);
+			name = ExampleViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE68018814F64BA5003511E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE68018914F64BA5003511E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE68018B14F64BA5003511E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BITTwitter/Prefix.pch;
+				INFOPLIST_FILE = BITTwitter/Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BE68018C14F64BA5003511E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BITTwitter/Prefix.pch;
+				INFOPLIST_FILE = BITTwitter/Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE68016314F64BA5003511E1 /* Build configuration list for PBXProject "BITTwitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE68018814F64BA5003511E1 /* Debug */,
+				BE68018914F64BA5003511E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE68018A14F64BA5003511E1 /* Build configuration list for PBXNativeTarget "BITTwitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE68018B14F64BA5003511E1 /* Debug */,
+				BE68018C14F64BA5003511E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE68016014F64BA5003511E1 /* Project object */;
+}
