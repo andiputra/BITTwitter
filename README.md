@@ -124,3 +124,7 @@ NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"andiputra7",
            }];
 
 ```
+
+## Future Updates
+
+Use native Twitter API if device is using iOS 5 or above.
