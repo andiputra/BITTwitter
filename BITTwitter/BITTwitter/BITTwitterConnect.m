@@ -312,34 +312,53 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
             
             ACAccountStore *accountStore = [[ACAccountStore alloc] init];
             ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-            [accountStore requestAccessToAccountsWithType:accountType
-                                    withCompletionHandler:^(BOOL granted, NSError *error) {
-                                        if (granted) {
-                                            NSArray *accounts = [accountStore accountsWithAccountType:accountType];
-                                            if (accounts.count > 0) {
-                                                ACAccount *twitterAccount = [accounts lastObject];
-                                                TWRequest *request = [[TWRequest alloc] initWithURL:requestURL
-                                                                                         parameters:params
-                                                                                      requestMethod:requestMethod];
-                                                [request setAccount:twitterAccount];
-                                                [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                                                    if (completionBlock && completionBlock != NULL) {
-                                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                                            completionBlock(responseData, urlResponse, error);
-                                                        });
-                                                    }
-                                                }];
-                                                [request release];
+            if ([accountType accessGranted]) {
+                NSArray *accounts = [accountStore accountsWithAccountType:accountType];
+                if (accounts.count > 0) {
+                    ACAccount *twitterAccount = [accounts lastObject];
+                    TWRequest *request = [[TWRequest alloc] initWithURL:requestURL
+                                                             parameters:params
+                                                          requestMethod:requestMethod];
+                    [request setAccount:twitterAccount];
+                    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                        if (completionBlock && completionBlock != NULL) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completionBlock(responseData, urlResponse, error);
+                            });
+                        }
+                    }];
+                    [request release];
+                }
+            } else {
+                [accountStore requestAccessToAccountsWithType:accountType
+                                        withCompletionHandler:^(BOOL granted, NSError *error) {
+                                            if (granted) {
+                                                NSArray *accounts = [accountStore accountsWithAccountType:accountType];
+                                                if (accounts.count > 0) {
+                                                    ACAccount *twitterAccount = [accounts lastObject];
+                                                    TWRequest *request = [[TWRequest alloc] initWithURL:requestURL
+                                                                                             parameters:params
+                                                                                          requestMethod:requestMethod];
+                                                    [request setAccount:twitterAccount];
+                                                    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                                                        if (completionBlock && completionBlock != NULL) {
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                completionBlock(responseData, urlResponse, error);
+                                                            });
+                                                        }
+                                                    }];
+                                                    [request release];
+                                                }
+                                            } else {
+                                                if (completionBlock && completionBlock != NULL) {
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        completionBlock(nil, nil, error);
+                                                    });
+                                                }
                                             }
-                                        } else {
-                                            if (completionBlock && completionBlock != NULL) {
-                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                    completionBlock(nil, nil, error);
-                                                });
-                                            }
-                                        }
-                                    }];
-            [accountStore release];
+                                        }];
+                [accountStore release];
+            }
             
         } else {
             
