@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49F0317316705893000871A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F0317016705893000871A2 /* Default-568h@2x.png */; };
+		49F0317416705893000871A2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F0317116705893000871A2 /* Default.png */; };
+		49F0317516705893000871A2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F0317216705893000871A2 /* Default@2x.png */; };
 		BE68016E14F64BA5003511E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE68016D14F64BA5003511E1 /* UIKit.framework */; };
 		BE68017014F64BA5003511E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE68016F14F64BA5003511E1 /* Foundation.framework */; };
 		BE68017214F64BA5003511E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE68017114F64BA5003511E1 /* CoreGraphics.framework */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49F0317016705893000871A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		49F0317116705893000871A2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		49F0317216705893000871A2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BE68016914F64BA5003511E1 /* BITTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BITTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE68016D14F64BA5003511E1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BE68016F14F64BA5003511E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -114,6 +120,9 @@
 		BE68017414F64BA5003511E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				49F0317016705893000871A2 /* Default-568h@2x.png */,
+				49F0317116705893000871A2 /* Default.png */,
+				49F0317216705893000871A2 /* Default@2x.png */,
 				BE75359114F65A03005441EC /* Icon@2x.png */,
 				BE75358F14F659F8005441EC /* Icon.png */,
 				BE68017514F64BA5003511E1 /* Info.plist */,
@@ -197,6 +206,9 @@
 				BE75358A14F65733005441EC /* kong.jpeg in Resources */,
 				BE75359014F659F8005441EC /* Icon.png in Resources */,
 				BE75359214F65A03005441EC /* Icon@2x.png in Resources */,
+				49F0317316705893000871A2 /* Default-568h@2x.png in Resources */,
+				49F0317416705893000871A2 /* Default.png in Resources */,
+				49F0317516705893000871A2 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
