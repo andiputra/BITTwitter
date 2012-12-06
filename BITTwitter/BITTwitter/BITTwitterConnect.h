@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "BITTwitterRequest.h"
 
+#if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
+#import <Twitter/Twitter.h>
+#import <Accounts/Accounts.h>
+#endif
+
 // BITTwitter Error Codes
 // Called when the user press the 'Cancel' button when presented with the login screen.
 #define USER_DID_CANCEL_LOGIN_ERROR_CODE        999

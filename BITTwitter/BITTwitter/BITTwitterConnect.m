@@ -83,6 +83,7 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
 - (void)requestUserAuthorization;
 - (void)requestOAuthAccessToken;
 - (void)performRequestWithCompletionHandler:(void (^)(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error))completionBlock requestType:(BITTwitterRequestType)type;
+- (BOOL)isiOS5OrAbove;
 @end
 
 @implementation BITTwitterConnect {
@@ -288,35 +289,105 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
 
 - (void)performRequestWithCompletionHandler:(void (^)(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error))completionBlock shouldAuthenticate:(BOOL)shouldAuthenticate {
     
-    if (![self isAuthenticated]) {
+    if ([self isiOS5OrAbove] && [ACAccount class]) {
         
-        // If we do not have to authenticate, perform public request.
-        if (shouldAuthenticate) {
-            BITTwitterRequest *requestAfterAuthentication = _request;
-            // If it is requesting for request token, access token, or user authentication, just perform the request normally.
-            // If it is not, authenticate first before performing request.
-            if (![self isAuthenticationRequest]) {
-                [self authenticateWithOAuthWithSuccesBlock:^(BITTwitterConnect *twitterConnect, NSInteger twitterID, NSString *twitterScreenName) {
-                    self.request = requestAfterAuthentication;
-                    [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypeAuthenticated];
-                } 
-                                              failureBlock:^(BITTwitterConnect *twitterConnect, NSError *error) {
-                                                  NSError *statusError = [NSError errorWithDomain:@"TwitterConnectErrorDomain:DidCancelLogin"
-                                                                                             code:USER_DID_CANCEL_LOGIN_ERROR_CODE
-                                                                                         userInfo:nil];
-                                                  completionBlock(nil, nil, statusError);
-                                              }];
-            } else {
-                [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypeAuthenticated];
-            }
-        } else {
-            [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypePublic];
+        NSURL *requestURL = [self.request requestURL];
+        NSDictionary *params = [self.request parameters];
+        TWRequestMethod requestMethod;
+        switch ([self.request requestMethod]) {
+            case BITTwitterRequestMethodGET:
+                requestMethod = TWRequestMethodGET;
+                break;
+            case BITTwitterRequestMethodPOST:
+                requestMethod = TWRequestMethodPOST;
+                break;
+            case BITTwitterRequestMethodDELETE:
+                requestMethod = TWRequestMethodDELETE;
+                break;
+            default:
+                break;
         }
-
+        
+        if (shouldAuthenticate) {
+            
+            ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+            ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+            [accountStore requestAccessToAccountsWithType:accountType
+                                    withCompletionHandler:^(BOOL granted, NSError *error) {
+                                        if (granted) {
+                                            NSArray *accounts = [accountStore accountsWithAccountType:accountType];
+                                            if (accounts.count > 0) {
+                                                ACAccount *twitterAccount = [accounts lastObject];
+                                                TWRequest *request = [[TWRequest alloc] initWithURL:requestURL
+                                                                                         parameters:params
+                                                                                      requestMethod:requestMethod];
+                                                [request setAccount:twitterAccount];
+                                                [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                                                    if (completionBlock && completionBlock != NULL) {
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            completionBlock(responseData, urlResponse, error);
+                                                        });
+                                                    }
+                                                }];
+                                                [request release];
+                                            }
+                                        } else {
+                                            if (completionBlock && completionBlock != NULL) {
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    completionBlock(nil, nil, error);
+                                                });
+                                            }
+                                        }
+                                    }];
+            [accountStore release];
+            
+        } else {
+            
+            TWRequest *request = [[TWRequest alloc] initWithURL:requestURL
+                                                     parameters:params
+                                                  requestMethod:requestMethod];
+            [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                if (completionBlock && completionBlock != NULL) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(responseData, urlResponse, error);
+                    });
+                }
+            }];
+            [request release];
+            
+        }
+        
     } else {
-        [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypeAuthenticated];
+        
+        if ([self isAuthenticated]) {
+            
+            [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypeAuthenticated];
+            
+        } else {
+            // If we do not have to authenticate, perform public request.
+            if (shouldAuthenticate) {
+                BITTwitterRequest *requestAfterAuthentication = _request;
+                // If it is requesting for request token, access token, or user authentication, just perform the request normally.
+                // If it is not, authenticate first before performing request.
+                if (![self isAuthenticationRequest]) {
+                    [self authenticateWithOAuthWithSuccesBlock:^(BITTwitterConnect *twitterConnect, NSInteger twitterID, NSString *twitterScreenName) {
+                        self.request = requestAfterAuthentication;
+                        [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypeAuthenticated];
+                    }
+                                                  failureBlock:^(BITTwitterConnect *twitterConnect, NSError *error) {
+                                                      NSError *statusError = [NSError errorWithDomain:@"TwitterConnectErrorDomain:DidCancelLogin"
+                                                                                                 code:USER_DID_CANCEL_LOGIN_ERROR_CODE
+                                                                                             userInfo:nil];
+                                                      completionBlock(nil, nil, statusError);
+                                                  }];
+                } else {
+                    [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypeAuthenticated];
+                }
+            } else {
+                [self performRequestWithCompletionHandler:completionBlock requestType:BITTwitterRequestTypePublic];
+            }
+        }
     }
-    
 }
 
 - (void)performRequestWithCompletionHandler:(void (^)(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error))completionBlock {
@@ -399,23 +470,62 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
 - (void)getUserTimeline:(NSString *)screenName withCompletionHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))completionBlock {
     
     /* Example request with more parameters
-        [NSDictionary dictionaryWithObjectsAndKeys:screenName, @"screen_name", @"5", @"count", nil] 
+        [NSDictionary dictionaryWithObjectsAndKeys:screenName, @"screen_name", @"5", @"count", nil]
      */
-    [self setRequestWithURL:[NSURL URLWithString:TIMELINE_JSON_URL] 
-                 parameters:[NSDictionary dictionaryWithObjectsAndKeys:screenName, @"screen_name", nil] 
+    NSURL *requestURL = [NSURL URLWithString:TIMELINE_JSON_URL];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:screenName, @"screen_name", nil];
+    
+    [self setRequestWithURL:requestURL
+                 parameters:params
               requestMethod:BITTwitterRequestMethodGET];
     [self performRequestWithCompletionHandler:completionBlock];
-    
+//    // For iOS 5 and above
+//    if ([self isiOS5OrAbove] && [TWRequest class]) {
+//        TWRequest *request = [[[TWRequest alloc] initWithURL:requestURL
+//                                                 parameters:params
+//                                              requestMethod:TWRequestMethodGET] autorelease];
+//        [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+//            if (completionBlock && completionBlock != NULL) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    completionBlock(responseData, urlResponse, error);
+//                });
+//            }
+//        }];
+//    } else {
+//        [self setRequestWithURL:requestURL
+//                     parameters:params
+//                  requestMethod:BITTwitterRequestMethodGET];
+//        [self performRequestWithCompletionHandler:completionBlock];
+//    }
 }
 
 - (void)getUserMentions:(NSString *)screenName withCompletionHandler:(void (^)(NSData *, NSHTTPURLResponse *, NSError *))completionBlock {
     
     NSString *mention = [NSString stringWithFormat:@"@%@", screenName];
-    [self setRequestWithURL:[NSURL URLWithString:SEARCH_JSON_URL] 
-                 parameters:[NSDictionary dictionaryWithObjectsAndKeys:mention, @"q", @"10", @"rpp", nil] // q -> query, rpp -> results per page
+    NSURL *requestURL = [NSURL URLWithString:SEARCH_JSON_URL];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:mention, @"q", @"10", @"rpp", nil]; // q -> query, rpp -> results per page
+    
+    [self setRequestWithURL:requestURL
+                 parameters:params
               requestMethod:BITTwitterRequestMethodGET];
     [self performRequestWithCompletionHandler:completionBlock];
-    
+//    if ([self isiOS5OrAbove] && [TWRequest class]) {
+//        TWRequest *request = [[[TWRequest alloc] initWithURL:requestURL
+//                                                  parameters:params
+//                                               requestMethod:TWRequestMethodGET] autorelease];
+//        [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+//            if (completionBlock && completionBlock != NULL) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    completionBlock(responseData, urlResponse, error);
+//                });
+//            }
+//        }];
+//    } else {
+//        [self setRequestWithURL:requestURL
+//                     parameters:params
+//                  requestMethod:BITTwitterRequestMethodGET];
+//        [self performRequestWithCompletionHandler:completionBlock];
+//    }
 }
 
 - (void)resetAccessToken {
@@ -480,6 +590,10 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
     return NO;
 }
 
+- (BOOL)isiOS5OrAbove {
+    return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.);
+}
+
 #pragma mark - Private Request Methods
 
 /** Set the requestQuery variable with parameters from BITTwitterRequest instance. */
@@ -506,6 +620,9 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
             break;
         case BITTwitterRequestMethodPOST:
             return @"POST";
+            break;
+        case BITTwitterRequestMethodDELETE:
+            return @"DELETE";
             break;
         default:
             break;

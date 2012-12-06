@@ -156,6 +156,7 @@
                    [self hideLoadingIndicator];
                }];
     
+    [request release];
 }
 
 - (void)getUserTimeline {

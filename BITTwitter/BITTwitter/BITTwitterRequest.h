@@ -11,6 +11,7 @@
 typedef enum {
     BITTwitterRequestMethodGET = 0,
     BITTwitterRequestMethodPOST,
+    BITTwitterRequestMethodDELETE,
 } BITTwitterRequestMethod;
 
 /** BITTwitterRequest generates request instance to be utilized by the BITTwitterConnect. 
