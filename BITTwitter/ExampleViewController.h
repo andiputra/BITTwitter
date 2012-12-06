@@ -12,8 +12,8 @@
 /*
  * REPLACE WITH YOUR OWN!!!
  */
-#define BITTWITTER_CONSUMER_KEY     @""
-#define BITTWITTER_CONSUMER_SECRET  @""
+#define BITTWITTER_CONSUMER_KEY     @"XOf8nDh6vZjFAg0Ud8Pw4g"
+#define BITTWITTER_CONSUMER_SECRET  @"Jm5qm7Uzyw2hcm5VOJk2AAfVTCjJw34JzSB2oVBc"
 
 @interface ExampleViewController : UIViewController
 

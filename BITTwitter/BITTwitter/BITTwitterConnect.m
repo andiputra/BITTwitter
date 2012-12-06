@@ -200,7 +200,7 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
         CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
         CFRelease(uuidRef);
         NSString *uuid = [(NSString *)uuidStringRef autorelease];
-        uuid = [NSString stringWithFormat:@"%@-%d", uuid, [[NSDate date] timeIntervalSince1970]];
+        uuid = [NSString stringWithFormat:@"%@-%.0lf", uuid, [[NSDate date] timeIntervalSince1970]];
         NSArray *uuidItems = [uuid componentsSeparatedByString:@"-"];
         _nonce = [[uuidItems componentsJoinedByString:@""] retain];
     }
@@ -588,7 +588,7 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
                 }
                 
                 [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%d.%@\"\r\n", [data objectForKey:MULTIPART_DATA_NAME], randomNumber, dataType] dataUsingEncoding:NSUTF8StringEncoding]];
-                [postBody appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                [postBody appendData:[@"Content-Type: application/octet-stream\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
                 
             } else {
                 
@@ -596,12 +596,12 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
                 
             }
             
-            [postBody appendData:[[NSString stringWithString:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]]; 
+            [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]]; 
             [postBody appendData:[data objectForKey:MULTIPART_DATA_OBJECT]];
             
             // Treat the last object differently
             if ([data isEqualToDictionary:[twitterRequest.multipartDatas lastObject]]) {
-                [postBody appendData:[[NSString stringWithString:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]]; 
+                [postBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]]; 
             } else {
                 [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
             }
@@ -733,11 +733,11 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
     // oauth_nonce
     NSString *oauthNonce = [[self nonce] encodedString];     
     // oauth_signature_method
-    NSString *oauthSignatureMethod = [[NSString stringWithString:@"HMAC-SHA1"] encodedString];
+    NSString *oauthSignatureMethod = [@"HMAC-SHA1" encodedString];
     // oauth_timestamp
     NSString *oauthTimestamp = [[self timestamp] encodedString];
     // oauth_version
-    NSString *oauthVersion = [[NSString stringWithString:@"1.0"] encodedString];
+    NSString *oauthVersion = [@"1.0" encodedString];
     // oauth_callback
     NSString *oauthApplicationURL = [_applicationURL encodedString];
     
@@ -815,11 +815,11 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
     // Keys and values that should always be included
     NSArray * keysAndValues = [NSArray arrayWithObjects:
                                [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_nonce", [[self nonce] encodedString]],
-                               [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_signature_method", [[NSString stringWithString:@"HMAC-SHA1"] encodedString]],
+                               [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_signature_method", [@"HMAC-SHA1" encodedString]],
                                [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_timestamp", [[self timestamp] encodedString]],
                                [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_consumer_key", [_consumerKey encodedString]],
                                [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_signature", [[self signature] encodedString]],
-                               [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_version", [[NSString stringWithString:@"1.0"] encodedString]],
+                               [NSString stringWithFormat:@"%@=\"%@\"", @"oauth_version", [@"1.0" encodedString]],
                                nil];
     
     // Optional keys and values additions depending on the request type

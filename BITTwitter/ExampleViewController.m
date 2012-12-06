@@ -114,7 +114,7 @@
     [self showLoadingIndicator];
     // Tweet with message containing random numbers, since you can't send the same message consecutively.
     // If there's no error returned by the completion handler, our request is successful.
-    [_twConnect tweetWithMessage:[NSString stringWithFormat:@"Test tweet number %d", (arc4random()%NSUIntegerMax)] 
+    [_twConnect tweetWithMessage:[NSString stringWithFormat:@"Test tweet number %ld", arc4random()%NSUIntegerMax]
                completionHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
                    if (!error) {
                        NSString * response = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
@@ -131,7 +131,7 @@
     
     [self showLoadingIndicator];
     // Tweet with message containing random numbers, since you can't send the same message consecutively.
-    NSData *messageData = [[NSString stringWithFormat:@"Test tweet number %d", arc4random()%NSUIntegerMax] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *messageData = [[NSString stringWithFormat:@"Test tweet number %ld", arc4random()%NSUIntegerMax] dataUsingEncoding:NSUTF8StringEncoding];
     // Convert the image into data.
     NSData *imageData = UIImagePNGRepresentation([UIImage imageNamed:@"kong.jpeg"]);
     
