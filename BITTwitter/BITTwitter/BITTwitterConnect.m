@@ -312,6 +312,7 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
             
             ACAccountStore *accountStore = [[ACAccountStore alloc] init];
             ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+            
             if ([accountType accessGranted]) {
                 NSArray *accounts = [accountStore accountsWithAccountType:accountType];
                 if (accounts.count > 0) {
@@ -357,8 +358,8 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
                                                 }
                                             }
                                         }];
-                [accountStore release];
             }
+            [accountStore release];
             
         } else {
             
