@@ -1,4 +1,10 @@
-BITTwitter is a lightweight, delightful, and simple to use Twitter client for iOS. It is an updated and improved version of my previous BSTwitter project.
+BITTwitter is a lightweight, delightful, and simple to use Twitter
+client for iOS. It is an updated and improved version of my previous
+BSTwitter project.
+
+## Latest Updates
+* iOS Twitter framework integration - for devices with iOS 5 and above
+installed.
 
 ## Getting Started
 
@@ -124,7 +130,3 @@ NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"andiputra7",
            }];
 
 ```
-
-## Future Updates
-
-Use native Twitter API if device is using iOS 5 or above.
