@@ -641,20 +641,23 @@ typedef void(^BITTwitterOAuthAuthenticationFailureBlock)(BITTwitterConnect *twit
                                         }
                                         
                                     } else {
-                                        if (failure && failure != NULL) {
-                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                if (error.code == 6) {
-                                                    UIAlertView *noAccountAlert = [[UIAlertView alloc] initWithTitle:@"No Account"
-                                                                                                             message:@"You're not signed-in to your Twitter account on this phone. Please sign-in to your account from Settings."
-                                                                                                            delegate:nil
-                                                                                                   cancelButtonTitle:@"OK"
-                                                                                                   otherButtonTitles:nil];
-                                                    [noAccountAlert show];
-                                                    [noAccountAlert release];
-                                                }
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            if (error.code == 6) {
+                                                UIAlertView *noAccountAlert = [[UIAlertView alloc] initWithTitle:@"No Account"
+                                                                                                         message:@"You're not signed-in to your Twitter account on this phone. Please sign-in to your account from Settings."
+                                                                                                        delegate:nil
+                                                                                               cancelButtonTitle:@"OK"
+                                                                                               otherButtonTitles:nil];
+                                                [noAccountAlert show];
+                                                [noAccountAlert release];
+                                            }
+                                            if (failure && failure != NULL) {
                                                 failure(self, error);
-                                            });
-                                        }
+                                            }
+                                            if (completionBlock && completionBlock != NULL) {
+                                                completionBlock(nil, nil, error);
+                                            }
+                                        });
                                     }
                                 }];
     }
